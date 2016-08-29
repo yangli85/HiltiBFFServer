@@ -3,6 +3,7 @@ package hilti.controller;
 import hilti.service.EmployeeService;
 
 import java.util.List;
+
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import hilti.model.Employee;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.http.HttpHeaders;
 import org.springframework.web.util.UriComponentsBuilder;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PathVariable;
 
 
@@ -65,5 +65,4 @@ public class EmployeeRestController {
         }
         return new ResponseEntity<Employee>(employee, HttpStatus.OK);
     }
-
 }

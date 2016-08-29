@@ -1,7 +1,7 @@
 package hilti.dao.impl;
 
 import java.util.List;
-
+import org.hibernate.criterion.Order;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.criterion.Restrictions;
@@ -12,7 +12,7 @@ import hilti.dao.EmployeeDao;
 import hilti.dao.AbstractDao;
 
 @Repository("employeeDao")
-public class EmployeeDaoImpl extends AbstractDao implements EmployeeDao {
+public class EmployeeDaoImpl extends AbstractDao<Integer, Employee> implements EmployeeDao {
 
     public void saveEmployee(Employee employee) {
         persist(employee);
@@ -20,19 +20,21 @@ public class EmployeeDaoImpl extends AbstractDao implements EmployeeDao {
 
     @SuppressWarnings("unchecked")
     public List<Employee> findAllEmployees() {
-        Criteria criteria = getSession().createCriteria(Employee.class);
+        Criteria criteria = createEntityCriteria().addOrder(Order.asc("name"));
+        criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);//To avoid duplicates.
         return (List<Employee>) criteria.list();
     }
 
     public void deleteEmployeeBySsn(String ssn) {
-        Query query = getSession().createSQLQuery("delete from Employee where ssn = :ssn");
-        query.setString("ssn", ssn);
-        query.executeUpdate();
+        Criteria crit = createEntityCriteria();
+        crit.add(Restrictions.eq("ssn", ssn));
+        Employee employee = (Employee)crit.uniqueResult();
+        delete(employee);
     }
 
 
     public Employee findBySsn(String ssn) {
-        Criteria criteria = getSession().createCriteria(Employee.class);
+        Criteria criteria = createEntityCriteria();
         criteria.add(Restrictions.eq("ssn", ssn));
         return (Employee) criteria.uniqueResult();
     }

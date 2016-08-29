@@ -3,7 +3,7 @@ Framework:Spring+Hibernate,a restful api server! It's just a sample,feel free to
 ##How to run?
 1.config database in src/main/resources/application.properties
 
-2.create a sample table EMPLOYEE,you can find sql script in db_migrate/create_employee
+2.create a sample table EMPLOYEE,you can find sql script in db_migrate/db.sql
 
 3.run mvn clean install jetty:run
 ##How to test?
