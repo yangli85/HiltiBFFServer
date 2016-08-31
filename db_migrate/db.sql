@@ -18,3 +18,12 @@ CREATE TABLE IMAGE(
    size double NOT NULL,
    PRIMARY KEY (id)
 );
+CREATE TABLE AUDIO(
+   id INT NOT NULL auto_increment,
+   pattern VARCHAR(100) NOT NULL,
+   categroy VARCHAR(100) NOT NULL,
+   content LONGBLOB NOT NULL,
+   name VARCHAR(100) NOT NULL,
+   size double NOT NULL,
+   PRIMARY KEY (id)
+);

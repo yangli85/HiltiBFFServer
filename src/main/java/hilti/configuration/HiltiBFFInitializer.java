@@ -31,7 +31,7 @@ public class HiltiBFFInitializer extends AbstractAnnotationConfigDispatcherServl
         return multipartConfigElement;
     }
 
-    private static final String LOCATION = "/Users/yangli/JavaWorkSpace/HiltiBffServer/image";
+    private static final String LOCATION = "/Users/yangli/JavaWorkSpace/HiltiBffServer/temp/";
 
     private static final long MAX_FILE_SIZE = 1024 * 1024 * 25;//25MB
 
